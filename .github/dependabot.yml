@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: /android_vulkan_interop
+    schedule:
+      interval: daily
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: daily
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: daily
