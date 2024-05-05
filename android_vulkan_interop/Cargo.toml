@@ -11,7 +11,11 @@ crate-type = ["cdylib"]
 android_logger = "0.14"
 jni = "0.21"
 log = "0.4"
-ndk = { version = "0.9", default-features = false, features = ["api-level-28", "rwh_06"] }
+ndk = { version = "0.9", default-features = false, features = ["api-level-30", "nativewindow", "rwh_06"] }
 ndk-sys = { version = "0.6", default-features = false }
 raw-window-handle = "0.6"
 rustix = { version = "0.38", default-features = false, features = ["std", "pipe", "stdio"] }
+libloading = { version = "0.8", default-features = false }
+
+[build-dependencies]
+bindgen = "0.69"

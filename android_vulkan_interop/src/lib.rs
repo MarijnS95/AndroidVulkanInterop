@@ -8,9 +8,13 @@ use jni::{
     objects::{JClass, JObject},
     JNIEnv,
 };
-use log::{debug, info, LevelFilter};
+use log::{debug, error, info, LevelFilter};
 use ndk::{native_window::NativeWindow, surface_texture::SurfaceTexture};
+
+use crate::native_window::{connect_egl, dequeue_buffer, queue_buffer, NativeWindowBuffer};
 // use raw_window_handle::{AndroidDisplayHandle, HasRawWindowHandle, RawDisplayHandle};
+
+mod native_window;
 
 fn render_to_native_window(window: NativeWindow) {
     dbg!(&window);
@@ -19,6 +23,19 @@ fn render_to_native_window(window: NativeWindow) {
     // let raw_display_handle = window.raw_display_handle();
     // let raw_display_handle = RawDisplayHandle::Android(AndroidDisplayHandle::empty());
     // let raw_window_handle = window.raw_window_handle();
+
+    window.try_allocate_buffers();
+    // connect_egl(&window).expect("Could not connect buffer queue to EGL");
+    if let Err(e) = connect_egl(&window) {
+        error!("Failed to connect {window:?} to EGL, skipping: {e}");
+        return;
+    }
+    let (nwbuf, fence) = dbg!(dequeue_buffer(&window).unwrap());
+    let hwbuf = dbg!(nwbuf.hardware_buffer());
+    dbg!(hwbuf.describe());
+    let nwbuf: NativeWindowBuffer = dbg!(hwbuf.into());
+
+    queue_buffer(&window, nwbuf, fence).unwrap();
 }
 
 #[no_mangle]

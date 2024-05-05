@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "rust.androidvulkaninterop"
-        minSdk = 28 // Should remain in sync with the ndk api-level-xx feature in Rust
+        minSdk = 30 // Should remain in sync with the ndk api-level-xx feature in Rust
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
