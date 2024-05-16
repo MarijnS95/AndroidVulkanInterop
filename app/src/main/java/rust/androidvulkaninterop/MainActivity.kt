@@ -46,9 +46,7 @@ class MainActivity : Activity() {
         println("Java TextureView: ${javaTextureView.surfaceTexture}")
         javaTextureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(
-                surfaceTexture: SurfaceTexture,
-                p1: Int,
-                p2: Int
+                surfaceTexture: SurfaceTexture, p1: Int, p2: Int
             ) {
                 Surface(surfaceTexture).let { surface ->
                     println("Java TextureView created: $surfaceTexture, $surface")
@@ -57,9 +55,7 @@ class MainActivity : Activity() {
             }
 
             override fun onSurfaceTextureSizeChanged(
-                surfaceTexture: SurfaceTexture,
-                p1: Int,
-                p2: Int
+                surfaceTexture: SurfaceTexture, p1: Int, p2: Int
             ) {
                 Surface(surfaceTexture).let { surface ->
                     println("Java TextureView resized: $surfaceTexture, $surface")
@@ -81,18 +77,14 @@ class MainActivity : Activity() {
         println("Rust TextureView: ${rustTextureView.surfaceTexture}")
         rustTextureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(
-                surfaceTexture: SurfaceTexture,
-                p1: Int,
-                p2: Int
+                surfaceTexture: SurfaceTexture, p1: Int, p2: Int
             ) {
                 println("Rust TextureView created: $surfaceTexture")
                 renderToSurfaceTexture(surfaceTexture)
             }
 
             override fun onSurfaceTextureSizeChanged(
-                surfaceTexture: SurfaceTexture,
-                p1: Int,
-                p2: Int
+                surfaceTexture: SurfaceTexture, p1: Int, p2: Int
             ) {
                 println("Rust TextureView resized: $surfaceTexture")
                 renderToSurfaceTexture(surfaceTexture)
