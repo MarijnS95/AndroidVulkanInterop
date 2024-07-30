@@ -1,12 +1,12 @@
 plugins {
+    id("org.mozilla.rust-android-gradle.rust-android")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.mozilla.rust-android-gradle.rust-android")
 }
 
 android {
     // Don't have the matching NDK for AGP installed: https://developer.android.com/studio/projects/install-ndk#default-ndk-per-agp
-    ndkVersion = "26.1.10909125"
+    ndkVersion = "26.3.11579264"
     namespace = "rust.androidvulkaninterop"
     compileSdk = 34
 
